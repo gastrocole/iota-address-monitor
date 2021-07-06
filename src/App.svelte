@@ -1,10 +1,31 @@
 <script lang="ts">
-	export let name: string;
+	import { SingleNodeClient } from '@iota/iota.js'
+	const client = new SingleNodeClient("https://chrysalis-nodes.iota.org");
+
+	let info;
+
+	async function run() {
+
+    	info = await client.info();
+	}
+
+	run()
+    	.then()
+    	.catch((err) => console.error(err));
+
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>Node Info</h1>
+	<p>Name: {info?.name ?? ""}</p>
+	<p>Version: {info?.version ?? ""}</p>
+	<p>Is Healthy: {info?.isHealthy ?? ""}</p>
+	<p>Network Id: {info?.networkId ?? ""}</p>
+	<p>Latest Milestone Index: {info?.latestMilestoneIndex ?? ""}</p>
+	<p>Confirmed Milestone Index: {info?.confirmedMilestoneIndex ?? ""}</p>
+	<p>Pruning Index: {info?.pruningIndex ?? ""}</p>
+	<p>Features: {info?.features ?? ""}</p>
+	<p>Min PoW Score: {info?.minPoWScore ?? ""}</p>
 </main>
 
 <style>
