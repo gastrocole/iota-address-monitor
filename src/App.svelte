@@ -1,51 +1,32 @@
-<script lang="ts">
-	import { SingleNodeClient } from '@iota/iota.js'
-	const client = new SingleNodeClient("https://chrysalis-nodes.iota.org");
+<script>
+import { navOptions } from  './Navigation/Navigation.svelte';	// import application navigation
+let selected = navOptions[0];	// keep track of the selected 'page' object (default to the about component since we must have local db connection established first)
+let intSelected = 0;	// selected page index
 
-	let info;
-
-	async function run() {
-
-    	info = await client.info();
-	}
-
-	run()
-    	.then()
-    	.catch((err) => console.error(err));
-
+// change the selected component (the event.originalTarget.id is not accessible in Chrome so switched to event.srcElement.id)
+function changeComponent(event) {
+	selected = navOptions[event.srcElement.id];
+	intSelected = event.srcElement.id;
+}
 </script>
-
-<main>
-	<h1>Node Info</h1>
-	<p>Name: {info?.name ?? ""}</p>
-	<p>Version: {info?.version ?? ""}</p>
-	<p>Is Healthy: {info?.isHealthy ?? ""}</p>
-	<p>Network Id: {info?.networkId ?? ""}</p>
-	<p>Latest Milestone Index: {info?.latestMilestoneIndex ?? ""}</p>
-	<p>Confirmed Milestone Index: {info?.confirmedMilestoneIndex ?? ""}</p>
-	<p>Pruning Index: {info?.pruningIndex ?? ""}</p>
-	<p>Features: {info?.features ?? ""}</p>
-	<p>Min PoW Score: {info?.minPoWScore ?? ""}</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<!-- Include Bootstrap CSS-->
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+<div class="container">
+	<!--app navigation -->
+	<ul class="nav nav-tabs">
+		{#each navOptions as option, i}
+		<li class="nav-item">
+			<button class={intSelected==i ? "nav-link active p-2 ml-1" : "p-2 ml-1 nav-link"} on:click={changeComponent} id={i} role="tab">{option.page}</button>
+		</li>
+		{/each}
+	</ul>
+	<!-- content wrapper -->
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="p-2">
+				<!-- this is where our main content is placed -->
+				<svelte:component this={selected.component}/>
+			</div>
+		</div>
+	</div>
+</div>
