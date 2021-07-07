@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { endpoint } from '../stores/node';
+	import { endpoint } from '../stores/nodeStore';
 
     let input;
 

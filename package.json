@@ -24,9 +24,11 @@
     "validate": "svelte-check"
   },
   "dependencies": {
+    "@capacitor-community/sqlite": "^3.0.0-rc.2",
     "@capacitor/android": "^3.0.2",
     "@capacitor/cli": "^3.0.2",
     "@capacitor/core": "^3.0.2",
+    "@capacitor/storage": "^1.0.2",
     "@iota/iota.js": "^1.5.7",
     "buffer": "^5.7.1",
     "crypto-browserify": "^3.12.0",

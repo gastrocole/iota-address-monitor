@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { endpoint } from '../stores/node';
+	import { endpoint } from '../stores/nodeStore';
 	import { SingleNodeClient } from '@iota/iota.js'
 
     let endpointValue;
-    let info;
+    let info = undefined;
 
 	async function getNodeInfo() {
 		const client = new SingleNodeClient(endpointValue);
-    	info = await client.info();
+    	info = await client.info().catch(()=>{info = null});
 	}
 
     endpoint.subscribe((value)=> {
@@ -22,7 +22,8 @@
 </script>
 
 <main>
-	<h2>Node Info</h2>
+    {#if info}
+    <h2>Node Info</h2>
 	<p>Name: {info?.name ?? ""}</p>
 	<p>Version: {info?.version ?? ""}</p>
 	<p>Is Healthy: {info?.isHealthy ?? ""}</p>
@@ -32,6 +33,10 @@
 	<p>Pruning Index: {info?.pruningIndex ?? ""}</p>
 	<p>Features: {info?.features ?? ""}</p>
 	<p>Min PoW Score: {info?.minPoWScore ?? ""}</p>
+    {:else if info = null}
+    <h2>Unable to connect to node</h2>
+    {/if}
+	
 </main>
 
 <style>
