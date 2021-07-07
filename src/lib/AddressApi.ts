@@ -1,7 +1,7 @@
 import { Storage } from '@capacitor/storage';
 import type { IAddressResponse } from '@iota/iota.js';
 
-export const addAddress = async (address: any) => {
+export const addAddressToStorage = async (address: any) => {
   try {
     console.log('addAddress started');
     console.log('address: ', address);

@@ -1,5 +1,6 @@
 <script>
-import AddressDetails from "../components/AddressDetails.svelte";
+  import AddressDetails from "../components/AddressDetails.svelte";
+  import PageTitle from '../components/PageTitle.svelte';
 
   let items = [];
   let name = "";
@@ -25,6 +26,11 @@ import AddressDetails from "../components/AddressDetails.svelte";
     items = items;
   };
 </script>
+
+<main>
+  <PageTitle title="Address Monitor" />
+  <AddressDetails />
+</main>
 
 <style>
   div,
@@ -88,8 +94,3 @@ import AddressDetails from "../components/AddressDetails.svelte";
     opacity: 0.4;
   }
 </style>
-
-<div>
-  <h3>Address Monitor</h3>
-  <AddressDetails />
-</div>
