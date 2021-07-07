@@ -1,4 +1,6 @@
 <script>
+import AddressDetails from "../components/AddressDetails.svelte";
+
   let items = [];
   let name = "";
 
@@ -89,20 +91,5 @@
 
 <div>
   <h3>Address Monitor</h3>
-
-  <form on:submit|preventDefault={addItem}>
-    <label for="name">Add an address</label>
-    <input id="name" type="text" bind:value={name} />
-  </form>
-
-  <ul>
-    {#each items as item}
-      <li class:done={item.done}>
-
-        <input type="checkbox" bind:checked={item.done} />
-        <span>{item.name}</span>
-        <button on:click={() => remove(item)}>&times;</button>
-      </li>
-    {/each}
-  </ul>
+  <AddressDetails />
 </div>
