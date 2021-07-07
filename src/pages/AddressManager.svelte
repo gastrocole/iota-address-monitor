@@ -1,17 +1,43 @@
-<script>
-  let items = [];
+<script lang='ts'>
+  import { endpoint } from '../stores/nodeStore';
+	import { SingleNodeClient, IAddressResponse } from '@iota/iota.js'
+  import { addAddress, getAllAddresses } from '../lib/AddressApi';
+  import RemoveAllAddressesButton from '../components/RemoveAllAddressesButton.svelte'
+
+  let endpointValue;
+  let items: IAddressResponse[] = [];
   let name = "";
 
-  const addItem = () => {
-    items = [
-      ...items,
-      {
-        id: Math.random(),
-        name,
-        done: false
+   endpoint.subscribe((value)=> {
+        console.log('Endpoint: ', value);
+        endpointValue = value;
+    });
+
+  async function getAllAddressesFromStroage() {
+    items = await getAllAddresses();
+  }
+
+  getAllAddressesFromStroage();
+
+  async function getAddressDetails() {
+    let address;
+		const client = new SingleNodeClient(endpointValue);
+    address = await client.address(name).catch(()=>{address = null});
+    return address;
+	}
+
+  const addItem = async () => {
+    try {
+      let address = await getAddressDetails();
+      console.log("addItem - address: ", address);
+      if(address) {
+        addAddress(address);
+        items.concat(address);
+        name = "";
       }
-    ];
-    name = "";
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const remove = item => {
@@ -97,12 +123,12 @@
 
   <ul>
     {#each items as item}
-      <li class:done={item.done}>
-
-        <input type="checkbox" bind:checked={item.done} />
-        <span>{item.name}</span>
+      <li>
+        <span>{item.address}</span>
         <button on:click={() => remove(item)}>&times;</button>
       </li>
     {/each}
   </ul>
+
+  <RemoveAllAddressesButton />
 </div>
