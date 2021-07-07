@@ -88,7 +88,7 @@
 </style>
 
 <div>
-  <h3>Address Monitor</h3>
+  <h3>Address Search</h3>
 
   <form on:submit|preventDefault={addItem}>
     <label for="name">Add an address</label>

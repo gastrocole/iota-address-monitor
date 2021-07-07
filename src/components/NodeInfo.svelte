@@ -23,7 +23,7 @@
 
 <main>
     {#if info}
-    <h2>Node Info</h2>
+    <h3>Node Info</h3>
 	<p>Name: {info?.name ?? ""}</p>
 	<p>Version: {info?.version ?? ""}</p>
 	<p>Is Healthy: {info?.isHealthy ?? ""}</p>
