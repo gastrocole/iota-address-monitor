@@ -10,14 +10,11 @@
     });
 
     const setEndpoint = () => {
-        console.log("setEndpoint: ", input);
         endpoint.set(input);
         setNodeEndpointInStateAndStorage(input);
-        console.log("setEndpoint: ", input);
     }
 
     endpoint.subscribe((value)=> {
-        console.log('Endpoint: ', value);
         input = value;
     });
 

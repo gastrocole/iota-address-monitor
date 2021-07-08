@@ -11,7 +11,6 @@
 	}
 
     endpoint.subscribe((value)=> {
-        console.log('Endpoint: ', value);
         endpointValue = value;
         if(value) {
             getNodeInfo();

@@ -15,18 +15,11 @@
 
 </script>
 
-
-    <button type="button" class="btn btn-danger button" on:click={onClick}>
-        Remove all addresses
-    </button>
-
+<button type="button" class="btn btn-danger button" on:click={onClick}>
+    Remove all addresses
+</button>
 
 <style>
-    .container {
-        width: 100%;
-        padding: 16px;
-    }
-
     .button {
         width: 100%;
     }

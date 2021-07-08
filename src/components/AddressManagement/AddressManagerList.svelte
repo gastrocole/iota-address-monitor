@@ -1,21 +1,6 @@
-<script lang='ts'>
-import { convertBalance } from "../../utils/convertBalance";
-
-
+<script>
 
     export let data;
-
-    const MAX_ADDRESS_DISPLAY_LENGTH = 15;
-    const CHECKSUM_LENGTH = 6;
-
-    const truncateAddress = (address) => {
-        return address.substring(0, MAX_ADDRESS_DISPLAY_LENGTH) + '...';
-
-    }
-
-    const getChecksum = (address) => {
-        return address.substring(address.length-CHECKSUM_LENGTH, address.length);
-    }
 
 </script>
 
@@ -37,7 +22,6 @@ import { convertBalance } from "../../utils/convertBalance";
 </table>
 
 <style>
-
     td {
         max-width: 150px;
         word-wrap: break-word;

@@ -3,15 +3,13 @@
 	import { SingleNodeClient, IAddressResponse } from '@iota/iota.js'
   import { addAddressToStorage, getAllAddresses } from '../lib/AddressApi';
   import PageTitle from '../components/PageTitle.svelte';
-  import AddressListWithRemove from '../components/AddressManagement/AddressListWithRemove.svelte';
-import AddressMonitorList from '../components/AddressManagement/AddressMonitorList.svelte';
+  import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
 
   let endpointValue;
   let items: IAddressResponse[] = [];
   let name = "";
 
    endpoint.subscribe((value)=> {
-        console.log('Endpooint: ', value);
         endpointValue = value;
     });
 
@@ -31,7 +29,6 @@ import AddressMonitorList from '../components/AddressManagement/AddressMonitorLi
   const addItem = async () => {
     try {
       let address = await getAddressDetails();
-      console.log("addItem - address: ", address);
       if(address) {
         addAddressToStorage(address);
         items.concat(address);
@@ -51,7 +48,6 @@ import AddressMonitorList from '../components/AddressManagement/AddressMonitorLi
     items = items;
   };
 
-  console.log('items: ', items);
 </script>
 
 <div>
