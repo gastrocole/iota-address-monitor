@@ -24,7 +24,7 @@
 <div>
   <PageTitle title="Address Management" />
 
-  <AddAddressInputField onSuccess={getAllAddressesFromStroage} onError={()=>{}}/>
+  <AddAddressInputField onSuccess={getAllAddressesFromStroage}}/>
 
   {#if items.length > 0 }
     <h4>Address Removal</h4>

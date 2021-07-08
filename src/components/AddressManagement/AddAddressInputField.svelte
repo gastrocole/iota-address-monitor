@@ -2,7 +2,6 @@
     import { addAddressToWallet } from '../../services/wallet';
 
     export let onSuccess: () => void;
-    export let onError: () => void;
 
     let value;
     let errorMessage;

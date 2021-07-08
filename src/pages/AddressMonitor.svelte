@@ -1,12 +1,12 @@
 <script lang='ts'>
   import { endpoint } from '../stores/nodeStore';
-	import { SingleNodeClient, IAddressResponse } from '@iota/iota.js'
+	import { SingleNodeClient } from '@iota/iota.js'
   import { addAddressToStorage, getAllAddresses } from '../lib/AddressApi';
   import PageTitle from '../components/PageTitle.svelte';
   import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
 
   let endpointValue;
-  let items: IAddressResponse[] = [];
+  let items: any[] = [];
   let name = "";
 
    endpoint.subscribe((value)=> {

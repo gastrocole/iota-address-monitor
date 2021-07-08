@@ -6,7 +6,6 @@
 <main>
 	<NodeInput />
 	<NodeInfo />
-
 </main>
 
 <style>
