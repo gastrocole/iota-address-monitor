@@ -61,8 +61,8 @@
 
 <style>
 	nav {
-		margin-top: -8px;
-		margin-left: -8px;
+		margin-top: -16px;
+		margin-left: -16px;
 		margin-right: -16px;
 	}
 

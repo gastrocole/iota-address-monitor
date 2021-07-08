@@ -21,9 +21,7 @@
 
 <div>
   <PageTitle title="Address Monitor" />
-
-  <button type="submit" class="btn btn-primary button">Refresh</button>
- 
+  <h4>Address list</h4>
   <AddressMonitorList data={data}/>
 </div>
 
