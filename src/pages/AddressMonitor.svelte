@@ -2,7 +2,7 @@
   import { endpoint } from '../stores/nodeStore';
 	import { SingleNodeClient } from '@iota/iota.js'
   import { addAddressToStorage, getAllAddresses } from '../lib/AddressApi';
-  import PageTitle from '../components/PageTitle.svelte';
+  import PageTitle from '../components/common/PageTitle.svelte';
   import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
 
   let endpointValue;
@@ -56,11 +56,9 @@
   <button type="submit" class="btn btn-primary button">Refresh</button>
  
   <AddressMonitorList data={items}/>
-
 </div>
 
 <style>
-
   .button {
         float: right;
         margin: 8px;

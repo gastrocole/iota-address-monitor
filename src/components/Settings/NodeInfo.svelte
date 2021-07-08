@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { endpoint } from '../stores/nodeStore';
+	import { endpoint } from '../../stores/nodeStore';
 	import { SingleNodeClient } from '@iota/iota.js'
 
     let endpointValue;
@@ -20,9 +20,9 @@
 
 </script>
 
-<main>
+<div>
     {#if info}
-    <h3>Node Info</h3>
+    <h4>Node details</h4>
 	<p>Name: {info?.name ?? ""}</p>
 	<p>Version: {info?.version ?? ""}</p>
 	<p>Is Healthy: {info?.isHealthy ?? ""}</p>
@@ -35,8 +35,7 @@
     {:else if info = null}
     <h2>Unable to connect to node</h2>
     {/if}
-	
-</main>
+</div>
 
 <style>
 </style>
