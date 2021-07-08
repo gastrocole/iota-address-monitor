@@ -2,7 +2,6 @@ import { Storage } from '@capacitor/storage';
 import type { IAddressResponse } from '@iota/iota.js';
 
 export const addAddressToStorage = async (address: any) => {
-  try {
     console.log('addAddress started');
     console.log('address: ', address);
     const { value } = await Storage.get({ key: 'addresses' });
@@ -18,9 +17,6 @@ export const addAddressToStorage = async (address: any) => {
       value: stringifyAddresses,
     });
     console.log('addAddress complete');
-  } catch (error) {
-    console.error(error);
-  } 
 };
 
 export const removeAllAddresses = async () => {

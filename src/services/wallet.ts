@@ -14,11 +14,13 @@ export const addAddressToWallet = async (inputAddress: string) => {
 
 
     // Get address details from node
-    let addressObject = await client.address(inputAddress).catch(()=>{addressObject = undefined});
+    let addressObject = await client.address(inputAddress).catch((error) => {throw error});
     console.log('addAddressToWallet - addressObject: ', addressObject);
+
+    let newAddressObject = { bech32: inputAddress, ...addressObject };
 
     // Add address to persisted storage if it doesn't already exist
     if(addressObject) {
-        await addAddressToStorage(inputAddress);
+        await addAddressToStorage(newAddressObject);
     }
 };

@@ -1,7 +1,6 @@
 <script context="module">
 // main navigation for the application
 import AddressMonitor from '../pages/AddressMonitor.svelte';
-import AddressSearch from '../pages/AddressSearch.svelte';
 import AddressManager from '../pages/AddressManager.svelte';
 import NodeSettings from '../pages/NodeSettings.svelte';
 
@@ -9,7 +8,6 @@ import NodeSettings from '../pages/NodeSettings.svelte';
 export const navOptions = [
     { page: 'Manage',   component: AddressManager },
     { page: 'Monitor',   component: AddressMonitor },
-    { page: 'Search',   component: AddressSearch },
     { page: 'Settings',   component: NodeSettings },
 ];
 </script>

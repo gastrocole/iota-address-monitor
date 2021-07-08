@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script>
 
     import { Datatable, rows } from 'svelte-simple-datatables'
 
@@ -8,7 +8,7 @@
     const settings = {
         sortable: false,
         pagination: true,
-        rowPerPage: 50,
+        rowPerPage: 10,
         columnFilter: false,
         css: true,
         labels: {
@@ -23,35 +23,45 @@
 
     export let data;
 
-    const truncateAddress = (address: string) => {
+    const truncateAddress = (address) => {
         return address.substring(0, MAX_ADDRESS_DISPLAY_LENGTH) + '...';
 
     }
 
-    const getChecksum = (address: string) => {
+    const getChecksum = (address) => {
         return address.substring(address.length-CHECKSUM_LENGTH, address.length);
     }
 
+    const onRemoveClick = () => {
+
+    }
+
 </script>
- 
-<Datatable settings={settings} data={data}>
-    <thead>
-        <th data-key="address">Address</th>
-        <th data-key="checksum">Checksum</th>
-        <th data-key="button"></th>
-    </thead>
-    <tbody>
-    {#each $rows as row}
-        <tr>
-            <td class='tdaddress'>{truncateAddress(row)}</td>
-            <td class='tdchecksum'>{getChecksum(row)}</td>
-            <td class='tdbutton'><button on:click={() => console.log("Remove")}>&times;</button></td>
-        </tr>
-    {/each}
-    </tbody>
-</Datatable>
+
+    <h4>Address List</h4>
+    <Datatable settings={settings} data={data}>
+        <col width="100">
+        <thead>
+            <th data-key="address">Address</th>
+            <th data-key="checksum">Checksum</th>
+            <th data-key="button">&times;</th>
+        </thead>
+        <tbody>
+        {#each $rows as row}
+            <tr >
+                <td style="min-width: 0;">{truncateAddress(row)}</td>
+                <td style="min-width: 0;">{getChecksum(row)}</td>
+                <td style="min-width: 0;"><button on:click={() => console.log("Removee")}>&times;</button></td>
+            </tr>
+        {/each}
+        </tbody>
+    </Datatable>
+
 
 <style>
+    h4 {
+        margin-top: 16px
+    }
     button {
         float: right;
         border: none;
@@ -61,6 +71,7 @@
         color: #dc4f21;
         font-size: 18px;
         cursor: pointer;
+        float: left;
     }
     button:hover {
         transform: scale(2);
@@ -69,23 +80,11 @@
         outline: #dc4f21;
     }
 
+
+    /* Datatable override */
+    
     .datatable thead th {
         padding: 8px 0px 8px 0px;
         text-align: left;
-        border-bottom: 1px solid #eee;
-        background: #fff;
-    }
-
-    .tdaddress {
-        min-width: 8;
-        max-width: fit-content;
-    }
-    .tdchecksum {
-        min-width: 0;
-        max-width: fit-content;
-    }
-    .tdbutton {
-        min-width: 0;
-        max-width: fit-content;
     }
 </style>

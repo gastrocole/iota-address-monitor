@@ -6,12 +6,12 @@
 </script>
 
 <main>
-    <h1>{title}</h1>
+    <h3>{title}</h3>
 </main>
 
 <style>
-    h1 {
-        
+    h3 {
+        margin-top: 16px;        
     }
 
 </style>

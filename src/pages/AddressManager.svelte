@@ -1,18 +1,19 @@
 <script lang='ts'>
   import { endpoint } from '../stores/nodeStore';
 	import { SingleNodeClient, IAddressResponse } from '@iota/iota.js'
-  import { addAddress, getAllAddresses } from '../lib/AddressApi';
+  import { addAddressToStorage, getAllAddresses } from '../lib/AddressApi';
   import RemoveAllAddressesButton from '../components/AddressManagement/RemoveAllAddressesButton.svelte'
-import PageTitle from '../components/PageTitle.svelte';
-import AddAddressInputField from '../components/AddressManagement/AddAddressInputField.svelte';
-import SimpleAddressList from '../components/AddressManagement/SimpleAddressList.svelte';
+  import PageTitle from '../components/PageTitle.svelte';
+  import AddAddressInputField from '../components/AddressManagement/AddAddressInputField.svelte';
+  import SimpleAddressList from '../components/AddressManagement/SimpleAddressList.svelte';
+import AddressManagementList from '../components/AddressManagement/AddressManagementList.svelte';
 
   let endpointValue;
   let items: IAddressResponse[] = [];
   let name = "";
 
    endpoint.subscribe((value)=> {
-        console.log('Endpoint: ', value);
+        console.log('Endpooint: ', value);
         endpointValue = value;
     });
 
@@ -34,7 +35,7 @@ import SimpleAddressList from '../components/AddressManagement/SimpleAddressList
       let address = await getAddressDetails();
       console.log("addItem - address: ", address);
       if(address) {
-        addAddress(address);
+        addAddressToStorage(address);
         items.concat(address);
         name = "";
       }
@@ -51,6 +52,7 @@ import SimpleAddressList from '../components/AddressManagement/SimpleAddressList
     item.done = !item.done;
     items = items;
   };
+
 </script>
 
 <div>
@@ -58,12 +60,14 @@ import SimpleAddressList from '../components/AddressManagement/SimpleAddressList
 
   <AddAddressInputField onSuccess={getAllAddressesFromStroage}/>
 
-  
-  <SimpleAddressList data={items}/>
-
-    {#if items.length > 0 }
+  {#if items.length > 0 }
+    <h4>Address Removal</h4>
     <RemoveAllAddressesButton onSuccess={getAllAddressesFromStroage} />
+    <AddressManagementList data={items}/>
   {/if}
+
+
+
 
 </div>
 

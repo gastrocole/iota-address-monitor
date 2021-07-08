@@ -2,30 +2,46 @@
     import { addAddressToWallet } from '../../services/wallet';
 
     export let onSuccess: () => void;
+    export let onError: () => void;
 
     let value;
+    let errorMessage;
 
     const onSubmit = () => {
-        addAddressToWallet(value).then(() => {
-            value = ''
+
+        if(!value) {
+            errorMessage = "Please enter an address";
+            return;
+        }
+
+        addAddressToWallet(value)
+        .then(() => {
             if(onSuccess) {
-                onSuccess()
+                value = '';
+                errorMessage = null;
+                onSuccess();
             }
+        })
+        .catch((error) => {
+            console.log("", error)
+            errorMessage = error;
         });
     }
 </script>
 
-<main class='main'>
-    <form on:submit|preventDefault={onSubmit}>
-        <label for="name">Add an address</label>
-        <input id="name" type="text" bind:value={value} />
-    </form>
-</main>
+<form on:submit|preventDefault={onSubmit} class="mb-3">
+    <label for="addressInput" class="form-label h4">Add an IOTA address</label>
+    <input type="text" class="form-control {errorMessage && "is-invalid" }" id="addressInput" bind:value={value}>
+    <div class="invalid-feedback">
+      {errorMessage}
+    </div>
+    <button type="submit" class="btn btn-success button">Add address</button>
+
+</form>
 
 <style>
-
-    .main {
-        margin: 16px;
+    button {
+        width: 100%;
+        margin-top: 8px;
     }
-
 </style>
