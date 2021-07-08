@@ -1,6 +1,7 @@
 <script lang='ts'>
   import { endpoint } from '../stores/nodeStore';
   import { getAllAddressesFromStorage } from '../lib/AddressApi';
+  import { updateAllAddressDetailsInWallet } from '../services/wallet'
   import PageTitle from '../components/common/PageTitle.svelte';
   import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
 
@@ -12,6 +13,7 @@
     });
 
   async function reloadData() {
+    await updateAllAddressDetailsInWallet();
     data = await getAllAddressesFromStorage();
   }
 

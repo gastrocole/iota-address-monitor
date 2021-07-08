@@ -25,11 +25,13 @@
   </thead>
   <tbody>
       {#each data as row}
-            <tr >
+        {#if row?.bech32}
+          <tr >
                 <td class='col-sm'>{row.bech32}</td>
                 <td><button type="button" class="btn btn-danger button btn-sm" on:click={()=>onClick(row.bech32)}>Remove</button></td>
             </tr>
-        {/each}
+        {/if}
+      {/each}
   </tbody>
 </table>
 

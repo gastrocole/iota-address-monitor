@@ -1,14 +1,54 @@
 import { SingleNodeClient } from '@iota/iota.js';
 import { getNodeEndpointFromStorage } from '../lib/SettingsApi'
-import { addAddressToStorage, checkIfAddressInStorage } from '../lib/AddressApi';
+import {
+  addAddressToStorage,
+  checkIfAddressInStorage,
+  getAllAddressesFromStorage,
+  updateAddressObjectsInStorage,
+} from '../lib/AddressApi';
 
 export const addAddressToWallet = async (inputAddress: string) => {
     // Check if address already added
+    console.log('addAddressToWallet()');
     let found = await checkIfAddressInStorage(inputAddress);
     if (found) {
       throw 'Address has already been added';
     }
-      
+
+
+    let addressObject = await getAddressDetailsFromNode(inputAddress);
+
+    // Add address to persisted storage if it doesn't already exist
+    if(addressObject) {
+        await addAddressToStorage(addressObject);
+    }
+};
+
+export const updateAllAddressDetailsInWallet = async () => {
+
+  // Get all addresses from storage
+  const storedAddresses = await getAllAddressesFromStorage();
+  console.log('storedAddresses: ', storedAddresses);
+
+  // Update all addresses
+  const updatedAddresses = await Promise.all(storedAddresses.map( async(addressObject) => {
+    try { 
+      let updatedAddressObject = await getAddressDetailsFromNode(addressObject.bech32);
+      console.log('updatedAddressObject: ', updatedAddressObject);
+      return updatedAddressObject;    
+    } catch {
+      console.log('unableToUpdateAddress');
+      return addressObject; 
+    }
+  }));
+  console.log('updatedAddresses: ', updatedAddresses);
+
+  await updateAddressObjectsInStorage(updatedAddresses);
+
+  return updatedAddresses;
+}
+
+export const getAddressDetailsFromNode = async (inputAddress: string) => {     
     // Get node endpoint
     const endpoint = await getNodeEndpointFromStorage();
 
@@ -27,8 +67,5 @@ export const addAddressToWallet = async (inputAddress: string) => {
 
     let newAddressObject = { bech32: inputAddress, ...addressObject };
 
-    // Add address to persisted storage if it doesn't already exist
-    if(addressObject) {
-        await addAddressToStorage(newAddressObject);
-    }
-};
+    return newAddressObject;
+}
