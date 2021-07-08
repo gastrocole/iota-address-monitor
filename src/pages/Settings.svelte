@@ -6,8 +6,9 @@
 
 <main>
 	<PageTitle title="App Settings" />
-	<NodeInputField />
 	<NodeInfo />
+	<NodeInputField />
+
 </main>
 
 <style>

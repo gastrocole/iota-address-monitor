@@ -8,6 +8,7 @@
 	async function getNodeInfo() {
 		const client = new SingleNodeClient(endpointValue);
     	info = await client.info().catch(()=>{info = null});
+		console.log(info)
 	}
 
     endpoint.subscribe((value)=> {
@@ -23,19 +24,19 @@
 <div>
     {#if info}
     <h4>Node details</h4>
-	<p>Name: {info?.name ?? ""}</p>
-	<p>Version: {info?.version ?? ""}</p>
-	<p>Is Healthy: {info?.isHealthy ?? ""}</p>
-	<p>Network Id: {info?.networkId ?? ""}</p>
-	<p>Latest Milestone Index: {info?.latestMilestoneIndex ?? ""}</p>
-	<p>Confirmed Milestone Index: {info?.confirmedMilestoneIndex ?? ""}</p>
-	<p>Pruning Index: {info?.pruningIndex ?? ""}</p>
-	<p>Features: {info?.features ?? ""}</p>
-	<p>Min PoW Score: {info?.minPoWScore ?? ""}</p>
+	<ul class="list-group">
+  		<li class="list-group-item">Name: {info?.name ?? ""}</li>
+  		<li class="list-group-item">Version: {info?.version ?? ""}</li>
+  		<li class="list-group-item">Network Id: {info?.networkId ?? ""}</li>
+  		<li class="list-group-item">Is Healthy: {info?.isHealthy ?? ""}</li>
+	</ul>
     {:else if info = null}
-    <h2>Unable to connect to node</h2>
+    <h4>Unable to connect to node</h4>
     {/if}
 </div>
 
 <style>
+	div {
+		margin-bottom: 16px;
+	}
 </style>
