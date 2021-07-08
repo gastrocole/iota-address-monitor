@@ -1,9 +1,11 @@
 <script>
-import { convertBalance } from "../../utils/convertBalance";
+    import { convertBalance } from "../../utils/convertBalance";
+    import { lastUpdate } from '../../stores/nodeStore';
 
 
 
     export let data;
+    let lastUpdateString;
 
     const MAX_ADDRESS_DISPLAY_LENGTH = 25;
     const CHECKSUM_LENGTH = 6;
@@ -17,9 +19,14 @@ import { convertBalance } from "../../utils/convertBalance";
         return address.substring(address.length-CHECKSUM_LENGTH, address.length);
     }
 
+    lastUpdate.subscribe((value) => {
+        lastUpdateString = value;
+    })
+
 </script>
 
-<table class="table">
+<table class="table caption-top">
+  <caption>Last updated: {lastUpdateString}</caption>
   <thead>
     <tr>
       <th scope="col">Address</th>
@@ -37,6 +44,10 @@ import { convertBalance } from "../../utils/convertBalance";
 </table>
 
 <style>
+
+    caption {
+        caption-side: top;
+    }
 
     td {
         max-width: 150px;

@@ -1,5 +1,6 @@
 <script lang="ts">
     import { getPollingIntervalFromSettings, setPollingIntervalFromSettings } from '../../lib/SettingsApi'
+import { restartAddressPollingService } from '../../services/polling';
 
     let input;
     let errorMessage = '';
@@ -18,12 +19,12 @@
     }
 
     const onSubmit = () => {
-        console.log(input);
         if(validate()) {
             setPollingIntervalFromSettings(input)
             .then(() => {
                 success = true;
                 errorMessage = '';
+                restartAddressPollingService()
             })
             .catch((error) => {
                 success = false;

@@ -1,5 +1,6 @@
 import { SingleNodeClient } from '@iota/iota.js';
-import { getNodeEndpointFromStorage } from '../lib/SettingsApi'
+import { getNodeEndpointFromStorage } from '../lib/SettingsApi';
+
 import {
   addAddressToStorage,
   checkIfAddressInStorage,

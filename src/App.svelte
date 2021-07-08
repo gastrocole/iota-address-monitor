@@ -29,6 +29,7 @@
 	import {updateAddressObjectsInStorage} from './lib/AddressApi'
 
 	import { navOptions } from  './Navigation/Navigation.svelte';	// import application navigation
+	import { registerAddressPollingService } from './services/polling';
 	let selected = navOptions[0];	// keep track of the selected 'page' object (default to the about component since we must have local db connection established first)
 	let intSelected = 0;	// selected page index
 
@@ -37,6 +38,8 @@
 		selected = navOptions[event.srcElement.id];
 		intSelected = event.srcElement.id;
 	}
+
+	registerAddressPollingService();
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
