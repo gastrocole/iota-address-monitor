@@ -11,3 +11,4 @@ export const navOptions = [
     { page: 'Settings',   component: Settings },
 ];
 </script>
+

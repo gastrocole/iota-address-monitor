@@ -5,7 +5,6 @@ import { addAddressToStorage, checkIfAddressInStorage } from '../lib/AddressApi'
 export const addAddressToWallet = async (inputAddress: string) => {
     // Check if address already added
     let found = await checkIfAddressInStorage(inputAddress);
-    console.log(found)
     if (found) {
       throw 'Address has already been added';
     }

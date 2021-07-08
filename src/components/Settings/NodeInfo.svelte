@@ -8,7 +8,6 @@
 	async function getNodeInfo() {
 		const client = new SingleNodeClient(endpointValue);
     	info = await client.info().catch(()=>{info = null});
-		console.log(info)
 	}
 
     endpoint.subscribe((value)=> {

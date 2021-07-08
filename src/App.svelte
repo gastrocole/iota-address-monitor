@@ -1,3 +1,4 @@
+
 <!-- Material Icons -->
 <link
   rel="stylesheet"
@@ -19,27 +20,54 @@
   href="https://cdn.jsdelivr.net/npm/svelte-material-ui@4.0.0/bare.min.css"
 />
 
-<script>
-import { navOptions } from  './Navigation/Navigation.svelte';	// import application navigation
-let selected = navOptions[0];	// keep track of the selected 'page' object (default to the about component since we must have local db connection established first)
-let intSelected = 0;	// selected page index
-
-// change the selected component (the event.originalTarget.id is not accessible in Chrome so switched to event.srcElement.id)
-function changeComponent(event) {
-	selected = navOptions[event.srcElement.id];
-	intSelected = event.srcElement.id;
-}
-</script>
 <!-- Include Bootstrap CSS-->
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
-<div>
-	<!--app navigation -->
-	<ul class="nav nav-tabs">
+
+<script>
+	// You can specify which plugins you need
+	import * as bootstrap from 'bootstrap';
+
+	import { navOptions } from  './Navigation/Navigation.svelte';	// import application navigation
+	let selected = navOptions[0];	// keep track of the selected 'page' object (default to the about component since we must have local db connection established first)
+	let intSelected = 0;	// selected page index
+
+	// change the selected component (the event.originalTarget.id is not accessible in Chrome so switched to event.srcElement.id)
+	function changeComponent(event) {
+		selected = navOptions[event.srcElement.id];
+		intSelected = event.srcElement.id;
+	}
+
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <h1 class="navbar-brand">IOTA Address Monitor</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
 		{#each navOptions as option, i}
-		<li class="nav-item">
-			<button class={intSelected==i ? "nav-link active p-2 ml-1" : "p-2 ml-1 nav-link"} on:click={changeComponent} id={i} role="tab">{option.page}</button>
-		</li>
+        	<li class="nav-item">
+				<a type="button" class={intSelected==i ? "nav-link btn-link  active " : "nav-link"} on:click={changeComponent} id={i}>{option.page}</a>
+			</li>
 		{/each}
-	</ul>
-	<svelte:component this={selected.component}/>
-</div>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<svelte:component this={selected.component}/>
+
+<style>
+	nav {
+		margin-top: -8px;
+		margin-left: -8px;
+		margin-right: -16px;
+	}
+
+	.navbar-toggler {
+		border: none
+	}
+	
+</style>
