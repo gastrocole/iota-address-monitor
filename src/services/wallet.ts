@@ -1,5 +1,5 @@
 import { SingleNodeClient } from '@iota/iota.js';
-import { getNodeEndpointFromStorage } from '../lib/NodeApi'
+import { getNodeEndpointFromStorage } from '../lib/SettingsApi'
 import { addAddressToStorage, checkIfAddressInStorage } from '../lib/AddressApi';
 
 export const addAddressToWallet = async (inputAddress: string) => {

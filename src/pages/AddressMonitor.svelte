@@ -26,8 +26,4 @@
 </div>
 
 <style>
-  .button {
-        float: right;
-        margin: 8px;
-    }
 </style>

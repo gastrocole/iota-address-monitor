@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { endpoint } from '../../stores/nodeStore';
-    import { getNodeEndpointFromStorage, setNodeEndpointInStateAndStorage } from '../../lib/NodeApi'
+    import { getNodeEndpointFromStorage, setNodeEndpointInStateAndStorage } from '../../lib/SettingsApi'
 
     let input;
     let errorMessage = '';
