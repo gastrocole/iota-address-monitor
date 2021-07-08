@@ -1,6 +1,18 @@
 <script>
 
+    import { removeAddress } from '../../lib/AddressApi'
     export let data;
+    export let onRemoveComplete;
+
+    const onClick = (address) => {
+      removeAddress(address)
+      .then(() => {
+        if(onRemoveComplete) {
+          onRemoveComplete();
+        }
+      })
+      .catch();
+    }
 
 </script>
 
@@ -15,7 +27,7 @@
       {#each data as row}
             <tr >
                 <td class='col-sm'>{row.bech32}</td>
-                <td><button type="button" class="btn btn-danger button" on:click={() => console.log("Remove")}>Remove</button></td>
+                <td><button type="button" class="btn btn-danger button btn-sm" on:click={()=>onClick(row.bech32)}>Remove</button></td>
             </tr>
         {/each}
   </tbody>

@@ -1,10 +1,9 @@
 import { Storage } from '@capacitor/storage';
-import type { IAddressResponse } from '@iota/iota.js';
 
-export const addAddressToStorage = async (address: any) => {
+export const addAddressToStorage = async (addressObject: any) => {
     const { value } = await Storage.get({ key: 'addresses' });
     const storedAddresses : any[] = JSON.parse(value) ?? [];
-    const updatedAddresses: any[] = storedAddresses.concat(address);
+    const updatedAddresses: any[] = storedAddresses.concat(addressObject);
     const stringifyAddresses = JSON.stringify(updatedAddresses);
     await Storage.set({
       key: 'addresses',
@@ -24,4 +23,18 @@ export const getAllAddresses = async () => {
 export const getAddress = async () => {
   const { value } = await Storage.get({ key: 'addresses' });
   return value; 
+}
+
+export const removeAddress = async (address: string) => {
+  const { value } = await Storage.get({ key: 'addresses' });
+  const storedAddresses: any[] = JSON.parse(value) ?? [];
+  const updatedAddresses: any[] = storedAddresses.filter((addressObject) => {
+    return addressObject.bech32 !== address;
+  });
+  const stringifyAddresses = JSON.stringify(updatedAddresses);
+  await Storage.set({
+    key: 'addresses',
+    value: stringifyAddresses,
+  });
+
 }

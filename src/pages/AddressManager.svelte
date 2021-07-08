@@ -29,7 +29,7 @@
   {#if items.length > 0 }
     <h4>Remove IOTA addresses</h4>
     <RemoveAllAddressesButton onSuccess={getAllAddressesFromStroage} />
-    <AddressManagerList data={items}/>
+    <AddressManagerList data={items} onRemoveComplete={getAllAddressesFromStroage}/>
   {/if}
 </div>
 
