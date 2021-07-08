@@ -1,11 +1,11 @@
 <script>
 
-    import { removeAddress } from '../../lib/AddressApi'
+    import { removeAddressFromStorage } from '../../lib/AddressApi'
     export let data;
     export let onRemoveComplete;
 
     const onClick = (address) => {
-      removeAddress(address)
+      removeAddressFromStorage(address)
       .then(() => {
         if(onRemoveComplete) {
           onRemoveComplete();

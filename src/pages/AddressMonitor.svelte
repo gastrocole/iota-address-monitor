@@ -1,21 +1,21 @@
 <script lang='ts'>
   import { endpoint } from '../stores/nodeStore';
-  import { getAllAddresses } from '../lib/AddressApi';
+  import { getAllAddressesFromStorage } from '../lib/AddressApi';
   import PageTitle from '../components/common/PageTitle.svelte';
   import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
 
   let endpointValue;
-  let items: any[] = [];
+  let data: any[] = [];
 
    endpoint.subscribe((value)=> {
         endpointValue = value;
     });
 
-  async function getAllAddressesFromStroage() {
-    items = await getAllAddresses();
+  async function reloadData() {
+    data = await getAllAddressesFromStorage();
   }
 
-  getAllAddressesFromStroage();
+  reloadData();
 
 </script>
 
@@ -24,7 +24,7 @@
 
   <button type="submit" class="btn btn-primary button">Refresh</button>
  
-  <AddressMonitorList data={items}/>
+  <AddressMonitorList data={data}/>
 </div>
 
 <style>

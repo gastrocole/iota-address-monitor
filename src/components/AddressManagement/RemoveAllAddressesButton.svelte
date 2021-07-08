@@ -1,12 +1,12 @@
 
 <script lang="ts">
-    import { removeAllAddresses } from '../../lib/AddressApi';
+    import { removeAllAddressesFromStorage } from '../../lib/AddressApi';
 
     export let onSuccess: () => void;
 
 
     const onClick = () => {
-        removeAllAddresses().then(() => {
+        removeAllAddressesFromStorage().then(() => {
             if(onSuccess) {
                 onSuccess()
             }
