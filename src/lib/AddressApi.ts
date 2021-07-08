@@ -38,7 +38,6 @@ export const removeAddressFromStorage = async (address: string) => {
 
 export const checkIfAddressInStorage = async (address: string) => {
   const storedAddresses = await getAllAddressesFromStorage();
-  console.log('storedAddresses: ', storedAddresses);
   const found = storedAddresses.find((addressObject) => {
     return addressObject.bech32 === address;
   });

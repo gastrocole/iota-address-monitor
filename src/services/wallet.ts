@@ -10,7 +10,6 @@ import {
 
 export const addAddressToWallet = async (inputAddress: string) => {
     // Check if address already added
-    console.log('addAddressToWallet()');
     let found = await checkIfAddressInStorage(inputAddress);
     if (found) {
       throw 'Address has already been added';
@@ -29,20 +28,16 @@ export const updateAllAddressDetailsInWallet = async () => {
 
   // Get all addresses from storage
   const storedAddresses = await getAllAddressesFromStorage();
-  console.log('storedAddresses: ', storedAddresses);
 
   // Update all addresses
   const updatedAddresses = await Promise.all(storedAddresses.map( async(addressObject) => {
     try { 
       let updatedAddressObject = await getAddressDetailsFromNode(addressObject.bech32);
-      console.log('updatedAddressObject: ', updatedAddressObject);
       return updatedAddressObject;    
     } catch {
-      console.log('unableToUpdateAddress');
       return addressObject; 
     }
   }));
-  console.log('updatedAddresses: ', updatedAddresses);
 
   await updateAddressObjectsInStorage(updatedAddresses);
 

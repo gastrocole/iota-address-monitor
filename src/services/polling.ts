@@ -5,8 +5,6 @@ import { asyncTimeout } from '../utils/aysncTimeout';
 import { updateAllAddressDetailsInWallet } from './wallet';
 
 export const registerAddressPollingService = async () => {
-  console.log('reg polling service');
-
   pollingInterval.set((await getPollingIntervalFromSettings()) ?? '60000');
 
   const validate = () => {
@@ -37,8 +35,6 @@ export const registerAddressPollingService = async () => {
     maxAttempts: 1000,
   };
 
-  console.log('pollingOptions: ', pollingOptions);
-
   poll(pollingOptions);
 };
 
@@ -51,8 +47,6 @@ export const stopAddressPollingService = async () => {
     return interval;
   };
 
-  console.log('switching polling off');
-
   shouldStopPolling.set(true);
 
   
@@ -60,8 +54,7 @@ export const stopAddressPollingService = async () => {
   await asyncTimeout(getInterval());
 
   shouldStopPolling.set(false);
-  console.log('reset polling flag');
-  
+    
   return;
 };
 

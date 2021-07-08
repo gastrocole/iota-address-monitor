@@ -10,7 +10,6 @@ export const poll = async ({ fn, validate, interval, maxAttempts }) => {
     attempts++;
 
     if (validate(result)) {
-      console.log("validate = true")
       isPolling.set(false);
       return resolve(result);
     } else if (maxAttempts && attempts === maxAttempts) {
