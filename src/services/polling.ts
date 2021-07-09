@@ -33,10 +33,10 @@ export const registerAddressPollingService = async () => {
     },
     interval: getInterval(),
     validate: validate,
-    maxAttempts: 1000,
+    maxAttempts: 10000,
   };
 
-  poll(pollingOptions);
+  poll(pollingOptions).catch();
 };
 
 export const stopAddressPollingService = async () => {

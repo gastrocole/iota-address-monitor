@@ -11,7 +11,6 @@
     let errorMessage = 'No results found';
 
     const search = () => {
-        console.log(data)
         searchSubset = data.filter((addressObject) => {
             let addressString: string = addressObject.bech32;
             let balanceString: string = String(addressObject.balance);
@@ -20,11 +19,10 @@
     }
 
     lastUpdate.subscribe(() => {
-      search();
+      //search();
     })
 
 	onMount(async () => {
-        console.log("mounted");
 		search();
 	});
 

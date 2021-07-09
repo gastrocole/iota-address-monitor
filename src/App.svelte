@@ -44,11 +44,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <h1 class="navbar-brand">IOTA Address Monitor</h1>
+    <h1 class="navbar-brand">
+		<img src="logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+		IOTA Address Monitor
+	</h1>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav">
 		{#each navOptions as option, i}
         	<li class="nav-item">
