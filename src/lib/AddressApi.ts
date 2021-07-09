@@ -1,13 +1,13 @@
 import { Storage } from '@capacitor/storage';
 
 export const addAddressToStorage = async (addressObject: any) => {
-    const storedAddresses = await getAllAddressesFromStorage();
-    const updatedAddresses: any[] = storedAddresses.concat(addressObject);
-    const stringifyAddresses = JSON.stringify(updatedAddresses);
-    await Storage.set({
-      key: 'addresses',
-      value: stringifyAddresses,
-    });
+  const storedAddresses = await getAllAddressesFromStorage();
+  const updatedAddresses: any[] = storedAddresses.concat(addressObject);
+  const stringifyAddresses = JSON.stringify(updatedAddresses);
+  await Storage.set({
+    key: 'addresses',
+    value: stringifyAddresses,
+  });
 };
 
 export const removeAllAddressesFromStorage = async () => {
@@ -21,8 +21,8 @@ export const getAllAddressesFromStorage = async () => {
 
 export const getAddressFromStorage = async () => {
   const { value } = await Storage.get({ key: 'addresses' });
-  return value; 
-}
+  return value;
+};
 
 export const removeAddressFromStorage = async (address: string) => {
   const storedAddresses = await getAllAddressesFromStorage();
@@ -34,7 +34,7 @@ export const removeAddressFromStorage = async (address: string) => {
     key: 'addresses',
     value: stringifyAddresses,
   });
-}
+};
 
 export const checkIfAddressInStorage = async (address: string) => {
   const storedAddresses = await getAllAddressesFromStorage();
@@ -42,12 +42,12 @@ export const checkIfAddressInStorage = async (address: string) => {
     return addressObject.bech32 === address;
   });
   return found;
-}
+};
 
 export const updateAddressObjectsInStorage = async (addressObjects: any[]) => {
   const stringifyAddresses = JSON.stringify(addressObjects);
   await Storage.set({
-      key: 'addresses',
-      value: stringifyAddresses,
+    key: 'addresses',
+    value: stringifyAddresses,
   });
-}
+};

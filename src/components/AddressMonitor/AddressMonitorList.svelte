@@ -2,22 +2,8 @@
     import { convertBalance } from "../../utils/convertBalance";
     import { lastUpdate } from '../../stores/nodeStore';
 
-
-
     export let data;
     let lastUpdateString;
-
-    const MAX_ADDRESS_DISPLAY_LENGTH = 25;
-    const CHECKSUM_LENGTH = 6;
-
-    const truncateAddress = (address) => {
-        return address.substring(0, MAX_ADDRESS_DISPLAY_LENGTH) + '...';
-
-    }
-
-    const getChecksum = (address) => {
-        return address.substring(address.length-CHECKSUM_LENGTH, address.length);
-    }
 
     lastUpdate.subscribe((value) => {
         lastUpdateString = value;

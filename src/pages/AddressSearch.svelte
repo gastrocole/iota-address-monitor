@@ -1,13 +1,11 @@
 <script lang='ts'>
   import { lastUpdate } from '../stores/nodeStore';
   import { getAllAddressesFromStorage } from '../lib/AddressApi';
-  import { updateAllAddressDetailsInWallet } from '../services/wallet'
   import PageTitle from '../components/common/PageTitle.svelte';
-  import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
-  import StartStopPollingButton from '../components/common/StartStopPollingButton.svelte';
+  import AddressMonitorListWithSearch from '../components/AddressMonitor/AddressMonitorListWithSearch.svelte';
   
 
-  let data: any[] = []
+  let data: any[] = [];
 
     lastUpdate.subscribe(() => {
       reloadData();
@@ -22,9 +20,8 @@
 </script>
 
 <div>
-  <PageTitle title="Address Monitor" />
-  <StartStopPollingButton />
-  <AddressMonitorList data={data}/>
+  <PageTitle title="Address Search" />
+  <AddressMonitorListWithSearch data={data}/>
 </div>
 
 <style>
