@@ -4,8 +4,8 @@ import {
 	checkIfAddressInStorage,
 	getAllAddressesFromStorage,
 	updateAddressObjectsInStorage,
-} from '../lib/AddressApi';
-import { getNodeEndpointFromStorage } from '../lib/SettingsApi';
+} from '../stores/AddressApi';
+import { getNodeEndpointFromStorage } from '../stores/SettingsApi';
 import { searchAddressObjects } from '../utils/searchAddressObjects';
 
 export const addAddressToWallet = async (inputAddress: string) => {

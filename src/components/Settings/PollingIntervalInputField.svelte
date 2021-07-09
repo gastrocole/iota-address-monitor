@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPollingIntervalFromSettings, setPollingIntervalFromSettings } from '../../lib/SettingsApi';
+	import { getPollingIntervalFromSettings, setPollingIntervalFromSettings } from '../../stores/SettingsApi';
 	import { restartAddressPollingService } from '../../services/polling';
 
 	let input;

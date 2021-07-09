@@ -3,8 +3,8 @@
 	import AddressManagerList from '../components/AddressManagement/AddressManagerList.svelte';
 	import RemoveAllAddressesButton from '../components/AddressManagement/RemoveAllAddressesButton.svelte';
 	import PageTitle from '../components/common/PageTitle.svelte';
-	import { getAllAddressesFromStorage } from '../lib/AddressApi';
-	import { lastUpdate } from '../stores/nodeStore';
+	import { getAddressObjectsFromWallet } from '../services/wallet';
+	import { lastUpdate } from '../stores/store';
 
 	let data: any[] = [];
 
@@ -13,7 +13,7 @@
 	});
 
 	async function reloadData() {
-		data = await getAllAddressesFromStorage();
+		data = await getAddressObjectsFromWallet();
 	}
 
 	reloadData();

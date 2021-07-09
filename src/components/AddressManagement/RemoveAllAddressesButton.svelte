@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { removeAllAddressesFromStorage } from '../../lib/AddressApi';
+	import { removeAllAddressesFromStorage } from '../../stores/AddressApi';
 
 	export let onSuccess: () => void;
 

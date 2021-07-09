@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { registerAddressPollingService, stopAddressPollingService } from '../../services/polling';
-	import { isPolling } from '../../stores/nodeStore';
+	import { isPolling } from '../../stores/store';
 
 	let isCurrentyPolling = false;
 

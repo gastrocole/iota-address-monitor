@@ -1,5 +1,5 @@
 <script>
-	import { removeAddressFromStorage } from '../../lib/AddressApi';
+	import { removeAddressFromStorage } from '../../stores/AddressApi';
 
 	export let data;
 	export let onRemoveComplete;

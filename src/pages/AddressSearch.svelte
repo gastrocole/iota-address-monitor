@@ -1,8 +1,8 @@
 <script lang="ts">
 	import AddressMonitorListWithSearch from '../components/AddressMonitor/AddressMonitorListWithSearch.svelte';
 	import PageTitle from '../components/common/PageTitle.svelte';
-	import { getAllAddressesFromStorage } from '../lib/AddressApi';
-	import { lastUpdate } from '../stores/nodeStore';
+	import { getAllAddressesFromStorage } from '../stores/AddressApi';
+	import { lastUpdate } from '../stores/store';
 
 	let data: any[] = [];
 

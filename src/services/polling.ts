@@ -1,5 +1,5 @@
-import { getPollingIntervalFromSettings } from '../lib/SettingsApi';
-import { lastUpdate, pollingInterval, shouldStopPolling } from '../stores/nodeStore';
+import { getPollingIntervalFromSettings } from '../stores/SettingsApi';
+import { lastUpdate, pollingInterval, shouldStopPolling } from '../stores/store';
 import { asyncTimeout } from '../utils/aysncTimeout';
 import { poll } from '../utils/poll';
 import { updateAllAddressDetailsInWallet } from './wallet';

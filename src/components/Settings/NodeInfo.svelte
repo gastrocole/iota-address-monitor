@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { SingleNodeClient } from '@iota/iota.js';
-	import { endpoint } from '../../stores/nodeStore';
+	import { endpoint } from '../../stores/store';
 
 	let endpointValue;
 	let info = undefined;

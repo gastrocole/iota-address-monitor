@@ -1,5 +1,5 @@
 <script>
-	import { lastUpdate } from '../../stores/nodeStore';
+	import { lastUpdate } from '../../stores/store';
 	import { convertBalance } from '../../utils/convertBalance';
 
 	export let data;
