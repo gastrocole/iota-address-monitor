@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { removeAddressFromStorage } from '../../stores/AddressApi';
+	import type IAddressObject from '../../types/AddressObject.interface';
 
-	export let data;
+	export let data: IAddressObject[];
 	export let onRemoveComplete;
 
 	const onClick = (address) => {

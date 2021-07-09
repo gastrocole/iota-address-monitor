@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { getAddressObjectsFromWallet } from '../../services/wallet';
+	import type IAddressObject from '../../types/AddressObject.interface';
 	import AddressMonitorList from './AddressMonitorList.svelte';
 
-	export let data;
+	export let data: IAddressObject[];
 
 	let searchSubset = data;
 	let inputValue;

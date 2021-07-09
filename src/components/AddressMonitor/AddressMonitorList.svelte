@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import { lastUpdate } from '../../stores/store';
+	import type IAddressObject from '../../types/AddressObject.interface';
 	import { convertBalance } from '../../utils/convertBalance';
 
-	export let data;
-	let lastUpdateString;
+	export let data: IAddressObject[];
+	let lastUpdateString: string;
 
 	lastUpdate.subscribe((value) => {
 		lastUpdateString = value;
