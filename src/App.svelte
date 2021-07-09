@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as bootstrap from 'bootstrap';
-	import NavigationBar from './navigation/NavigationBar.svelte';
+	import NavigationBar from './components/navigation/NavigationBar.svelte';
 	import { registerAddressPollingService } from './services/polling';
 
 	registerAddressPollingService();

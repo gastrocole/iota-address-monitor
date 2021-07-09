@@ -1,5 +1,5 @@
 <script>
-	import Logo from '../components/common/Logo.svelte';
+	import Logo from '../common/Logo.svelte';
 	import { navOptions } from './Navigation.svelte';
 
 	let selected = navOptions[0];
