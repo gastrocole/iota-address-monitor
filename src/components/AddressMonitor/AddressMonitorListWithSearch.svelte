@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { lastUpdate } from '../../stores/nodeStore';
+	import { getAddressObjectsFromWallet } from '../../services/wallet';
 	import AddressMonitorList from './AddressMonitorList.svelte';
 
 	export let data;
@@ -10,27 +10,20 @@
 	let searchTerm = '';
 	let errorMessage = 'No results found';
 
-	const search = () => {
-		searchSubset = data.filter((addressObject) => {
-			let addressString: string = addressObject.bech32;
-			let balanceString: string = String(addressObject.balance);
-			return addressString.includes(searchTerm) || balanceString == searchTerm;
-		});
-	};
-
-	lastUpdate.subscribe(() => {
-		//search();
-	});
-
 	onMount(async () => {
-		search();
+		reload();
 	});
 
 	const onSubmit = () => {
 		searchTerm = inputValue;
+		reload();
 	};
 
-	$: data && search();
+	const reload = async () => {
+		searchSubset = await getAddressObjectsFromWallet(searchTerm);
+	};
+
+	$: data && reload();
 </script>
 
 <form on:submit|preventDefault={onSubmit} class="mb-3">

@@ -1,7 +1,7 @@
 import { getPollingIntervalFromSettings } from '../lib/SettingsApi';
-import { poll } from '../utils/poll';
 import { lastUpdate, pollingInterval, shouldStopPolling } from '../stores/nodeStore';
 import { asyncTimeout } from '../utils/aysncTimeout';
+import { poll } from '../utils/poll';
 import { updateAllAddressDetailsInWallet } from './wallet';
 
 export const registerAddressPollingService = async () => {
