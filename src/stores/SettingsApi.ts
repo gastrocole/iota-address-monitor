@@ -1,10 +1,12 @@
 import { Storage } from '@capacitor/storage';
+import { endpoint, pollingInterval } from './store';
 
 export const setNodeEndpointInStateAndStorage = async (value: string) => {
 	await Storage.set({
 		key: 'endpoint',
 		value: value,
 	});
+	endpoint.set(value);
 };
 
 export const getNodeEndpointFromStorage = async () => {
@@ -21,11 +23,12 @@ export const getPollingIntervalFromSettings = async () => {
 	return value;
 };
 
-export const setPollingIntervalFromSettings = async (value: string) => {
+export const setPollingIntervalInStateAndStorage = async (value: string) => {
 	await Storage.set({
 		key: 'pollingInterval',
 		value: value,
 	});
+	pollingInterval.set(value);
 };
 
 export const unsetPollingIntervalFromSettings = async () => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPollingIntervalFromSettings, setPollingIntervalFromSettings } from '../../stores/SettingsApi';
+	import { getPollingIntervalFromSettings, setPollingIntervalInStateAndStorage } from '../../stores/SettingsApi';
 	import { restartAddressPollingService } from '../../services/polling';
 
 	let input;
@@ -8,6 +8,7 @@
 
 	getPollingIntervalFromSettings().then((value) => {
 		input = value;
+		setPollingIntervalInStateAndStorage(value);
 	});
 
 	const validate = () => {
@@ -20,7 +21,7 @@
 
 	const onSubmit = () => {
 		if (validate()) {
-			setPollingIntervalFromSettings(input)
+			setPollingIntervalInStateAndStorage(input)
 				.then(() => {
 					success = true;
 					errorMessage = '';
