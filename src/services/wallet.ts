@@ -6,6 +6,7 @@ import {
 	updateAddressObjectsInStorage,
 } from '../stores/AddressApi';
 import { getNodeEndpointFromStorage } from '../stores/SettingsApi';
+import type IAddressObject from '../types/AddressObject.interface';
 import { searchAddressObjects } from '../utils/searchAddressObjects';
 
 export const addAddressToWallet = async (inputAddress: string) => {
@@ -60,7 +61,7 @@ export const getAddressDetailsFromNode = async (inputAddress: string) => {
 		}
 	});
 
-	let newAddressObject = { bech32: inputAddress, ...addressObject };
+	let newAddressObject: IAddressObject = { bech32: inputAddress, ...addressObject };
 
 	return newAddressObject;
 };

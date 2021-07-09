@@ -1,16 +1,9 @@
-enum UNITS {
-	'i' = 0,
-	'Ki' = 1,
-	'Mi' = 2,
-	'Gi' = 3,
-	'Ti' = 4,
-	'Pi' = 5,
-}
+import UnitsEnum from '../enums/UnitsEnum';
 
 export const convertBalance = (balance: any, decimalFigures: number = 3) => {
 	const balanceString: string = String(balance);
 	const unitNumber = Math.floor((balanceString.length - 1) / 3);
-	const unit = UNITS[unitNumber];
+	const unit = UnitsEnum[unitNumber];
 
 	const remainder = balanceString.length % 3;
 
