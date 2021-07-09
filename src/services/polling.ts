@@ -6,7 +6,7 @@ import { updateAllAddressDetailsInWallet } from './wallet';
 
 export const registerAddressPollingService = async () => {
 	shouldStopPolling.set(false);
-	pollingInterval.set((await getPollingIntervalFromSettings()) ?? '60');
+	pollingInterval.set((await getPollingIntervalFromSettings()) ?? '1');
 
 	const validate = () => {
 		let stop = false;
