@@ -5,59 +5,59 @@ import { asyncTimeout } from '../utils/aysncTimeout';
 import { updateAllAddressDetailsInWallet } from './wallet';
 
 export const registerAddressPollingService = async () => {
-  shouldStopPolling.set(false);
-  pollingInterval.set((await getPollingIntervalFromSettings()) ?? '60');
+	shouldStopPolling.set(false);
+	pollingInterval.set((await getPollingIntervalFromSettings()) ?? '60');
 
-  const validate = () => {
-    let stop = false;
-    shouldStopPolling.subscribe((value) => {
-      stop = value;
-    });
-    return stop;
-  };
+	const validate = () => {
+		let stop = false;
+		shouldStopPolling.subscribe((value) => {
+			stop = value;
+		});
+		return stop;
+	};
 
-  const getInterval = () => {
-    let interval = 0;
-    pollingInterval.subscribe((value) => {
-      interval = Number(value) * 1000;
-    });
-    return interval;
-  };
+	const getInterval = () => {
+		let interval = 0;
+		pollingInterval.subscribe((value) => {
+			interval = Number(value) * 1000;
+		});
+		return interval;
+	};
 
-  const pollingOptions = {
-    fn: async () => {
-      await updateAllAddressDetailsInWallet();
-      let date = new Date();
-      let localDate = date.toLocaleString();
-      lastUpdate.set(localDate);
-    },
-    interval: getInterval(),
-    validate: validate,
-    maxAttempts: 10000,
-  };
+	const pollingOptions = {
+		fn: async () => {
+			await updateAllAddressDetailsInWallet();
+			let date = new Date();
+			let localDate = date.toLocaleString('en-GB');
+			lastUpdate.set(localDate);
+		},
+		interval: getInterval(),
+		validate: validate,
+		maxAttempts: 10000,
+	};
 
-  poll(pollingOptions).catch();
+	poll(pollingOptions).catch();
 };
 
 export const stopAddressPollingService = async () => {
-  const getInterval = () => {
-    let interval = 0;
-    pollingInterval.subscribe((value) => {
-      interval = Number(value) * 1000;
-    });
-    return interval;
-  };
+	const getInterval = () => {
+		let interval = 0;
+		pollingInterval.subscribe((value) => {
+			interval = Number(value) * 1000;
+		});
+		return interval;
+	};
 
-  shouldStopPolling.set(true);
+	shouldStopPolling.set(true);
 
-  await asyncTimeout(getInterval());
+	await asyncTimeout(getInterval());
 
-  shouldStopPolling.set(false);
+	shouldStopPolling.set(false);
 
-  return;
+	return;
 };
 
 export const restartAddressPollingService = async () => {
-  await stopAddressPollingService();
-  registerAddressPollingService();
+	await stopAddressPollingService();
+	registerAddressPollingService();
 };

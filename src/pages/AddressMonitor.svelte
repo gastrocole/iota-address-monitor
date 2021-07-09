@@ -1,30 +1,27 @@
-<script lang='ts'>
-  import { lastUpdate } from '../stores/nodeStore';
-  import { getAllAddressesFromStorage } from '../lib/AddressApi';
-  import { updateAllAddressDetailsInWallet } from '../services/wallet'
-  import PageTitle from '../components/common/PageTitle.svelte';
-  import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
-  import StartStopPollingButton from '../components/common/StartStopPollingButton.svelte';
-  
+<script lang="ts">
+	import AddressMonitorList from '../components/AddressMonitor/AddressMonitorList.svelte';
+	import PageTitle from '../components/common/PageTitle.svelte';
+	import StartStopPollingButton from '../components/common/StartStopPollingButton.svelte';
+	import { getAllAddressesFromStorage } from '../lib/AddressApi';
+	import { lastUpdate } from '../stores/nodeStore';
 
-  let data: any[] = []
+	let data: any[] = [];
 
-    lastUpdate.subscribe(() => {
-      reloadData();
-    })
+	lastUpdate.subscribe(() => {
+		reloadData();
+	});
 
-  async function reloadData() {
-    data = await getAllAddressesFromStorage();
-  }
+	async function reloadData() {
+		data = await getAllAddressesFromStorage();
+	}
 
-  reloadData();
-
+	reloadData();
 </script>
 
 <div>
-  <PageTitle title="Address Monitor" />
-  <StartStopPollingButton />
-  <AddressMonitorList data={data}/>
+	<PageTitle title="Address Monitor" />
+	<StartStopPollingButton />
+	<AddressMonitorList {data} />
 </div>
 
 <style>

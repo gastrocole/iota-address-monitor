@@ -1,27 +1,25 @@
-<script lang='ts'>
-  import { lastUpdate } from '../stores/nodeStore';
-  import { getAllAddressesFromStorage } from '../lib/AddressApi';
-  import PageTitle from '../components/common/PageTitle.svelte';
-  import AddressMonitorListWithSearch from '../components/AddressMonitor/AddressMonitorListWithSearch.svelte';
-  
+<script lang="ts">
+	import AddressMonitorListWithSearch from '../components/AddressMonitor/AddressMonitorListWithSearch.svelte';
+	import PageTitle from '../components/common/PageTitle.svelte';
+	import { getAllAddressesFromStorage } from '../lib/AddressApi';
+	import { lastUpdate } from '../stores/nodeStore';
 
-  let data: any[] = [];
+	let data: any[] = [];
 
-    lastUpdate.subscribe(() => {
-      reloadData();
-    })
+	lastUpdate.subscribe(() => {
+		reloadData();
+	});
 
-  async function reloadData() {
-    data = await getAllAddressesFromStorage();
-  }
+	async function reloadData() {
+		data = await getAllAddressesFromStorage();
+	}
 
-  reloadData();
-
+	reloadData();
 </script>
 
 <div>
-  <PageTitle title="Address Search" />
-  <AddressMonitorListWithSearch data={data}/>
+	<PageTitle title="Address Search" />
+	<AddressMonitorListWithSearch {data} />
 </div>
 
 <style>

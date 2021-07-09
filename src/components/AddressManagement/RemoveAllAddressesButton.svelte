@@ -1,27 +1,21 @@
-
 <script lang="ts">
-    import { removeAllAddressesFromStorage } from '../../lib/AddressApi';
+	import { removeAllAddressesFromStorage } from '../../lib/AddressApi';
 
-    export let onSuccess: () => void;
+	export let onSuccess: () => void;
 
-
-    const onClick = () => {
-        removeAllAddressesFromStorage().then(() => {
-            if(onSuccess) {
-                onSuccess()
-            }
-        });
-    }
-
+	const onClick = () => {
+		removeAllAddressesFromStorage().then(() => {
+			if (onSuccess) {
+				onSuccess();
+			}
+		});
+	};
 </script>
 
-<button type="button" class="btn btn-danger button" on:click={onClick}>
-    Remove all addresses
-</button>
+<button type="button" class="btn btn-danger button" on:click={onClick}> Remove all addresses </button>
 
 <style>
-    .button {
-        width: 100%;
-    }
-
+	.button {
+		width: 100%;
+	}
 </style>
